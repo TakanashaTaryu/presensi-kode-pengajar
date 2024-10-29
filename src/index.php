@@ -18,64 +18,67 @@ try {
 
 // Memuat pengaturan cutoff
 $cutoff = json_decode(file_get_contents('cutoff.json'), true);
+$presensi_dinaktifkan = !$cutoff['absen_awal_enabled'] && !$cutoff['absen_akhir_enabled'];
 
-// Menangani pengisian presensi
 $alert_message = ''; // Variabel untuk menyimpan pesan alert
 $error_message = ''; // Variabel untuk menyimpan pesan kesalahan
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $kode_asisten = $_POST['kode_asisten'];
-    $jam_absen = date('H:i'); // Mengambil jam saat ini
-
-    // Validasi kode asisten
-    $stmt = $pdo->prepare("SELECT * FROM user WHERE kode_asisten = :kode");
-    $stmt->execute(['kode' => $kode_asisten]);
-    $user = $stmt->fetch();
-
-    if (!$user) {
-        $error_message = 'Kode asisten tidak ada!!  silahkan hubungi penjaga presensi';
+    if ($presensi_dinaktifkan) {
+        $error_message = 'Presensi belum dinyalakan, silahkan hubungi penjaga presensi';
     } else {
-        // Cek status presensi
-        $absen_awal_enabled = $cutoff['absen_awal_enabled'];
-        $absen_akhir_enabled = $cutoff['absen_akhir_enabled'];
+        $kode_asisten = $_POST['kode_asisten'];
+        $jam_absen = date('H:i'); // Mengambil jam saat ini
 
-        // Logika untuk absen awal
-        if ($absen_awal_enabled && $user['absen_awal'] == 0) {
-            $keterangan_awal = null;
-            $jam_mulai = new DateTime($cutoff['absen_awal_start']);
-            $jam_akhir = new DateTime($cutoff['absen_awal_end']);
-            $jam_absen_dt = new DateTime($jam_absen);
+        // Validasi kode asisten
+        $stmt = $pdo->prepare("SELECT * FROM user WHERE kode_asisten = :kode");
+        $stmt->execute(['kode' => $kode_asisten]);
+        $user = $stmt->fetch();
 
-            if ($jam_absen_dt < $jam_mulai) {
-                $keterangan_awal = "Tepat waktu";
-            } elseif ($jam_absen_dt >= $jam_mulai && $jam_absen_dt <= $jam_akhir) {
-                $keterangan_awal = "Tepat waktu";
-            } else {
-                $keterangan_awal = "Lambat"; // Jika di luar waktu
-            }
-
-            // Menyimpan absen awal
-            $stmt = $pdo->prepare("UPDATE user SET absen_awal = 1, jam_absen_awal = :jam, keterangan_awal = :keterangan WHERE kode_asisten = :kode");
-            $stmt->execute(['jam' => $jam_absen, 'keterangan' => $keterangan_awal, 'kode' => $kode_asisten]);
-
-            $alert_message = 'Anda telah berhasil melakukan presensi awal!';
-            // Hapus cache
-            header("Location: " . $_SERVER['PHP_SELF'] . "?alert=" . urlencode($alert_message));
-            exit();
-        } 
-        // Logika untuk absen akhir
-        elseif ($absen_akhir_enabled && $user['absen_akhir'] == 0) {
-            // Menyimpan absen akhir (tidak ada batas waktu)
-            $stmt = $pdo->prepare("UPDATE user SET absen_akhir = 1, jam_absen_akhir = :jam WHERE kode_asisten = :kode");
-            $stmt->execute(['jam' => $jam_absen, 'kode' => $kode_asisten]);
-
-            $alert_message = 'Anda telah berhasil melakukan presensi akhir!';
-            // Hapus cache
-            header("Location: " . $_SERVER['PHP_SELF'] . "?alert=" . urlencode($alert_message));
-            exit();
+        if (!$user) {
+            $error_message = 'Kode asisten tidak ada! Silahkan hubungi penjaga presensi';
         } else {
-            // Menentukan jenis presensi yang sudah dilakukan
-            $pesan = $user['absen_awal'] ? 'Anda sudah melakukan presensi awal!' : 'Anda sudah melakukan presensi akhir!';
-            $alert_message = $pesan;
+            // Cek status presensi
+            $absen_awal_enabled = $cutoff['absen_awal_enabled'];
+            $absen_akhir_enabled = $cutoff['absen_akhir_enabled'];
+
+            // Logika untuk absen awal
+            if ($absen_awal_enabled && $user['absen_awal'] == 0) {
+                $keterangan_awal = null;
+                $jam_mulai = new DateTime($cutoff['absen_awal_start']);
+                $jam_akhir = new DateTime($cutoff['absen_awal_end']);
+                $jam_absen_dt = new DateTime($jam_absen);
+
+                if ($jam_absen_dt <= $jam_akhir) {
+                    $keterangan_awal = "Tepat waktu";
+                } else {
+                    $keterangan_awal = "Lambat"; // Jika di luar waktu
+                }
+
+                // Menyimpan absen awal
+                $stmt = $pdo->prepare("UPDATE user SET absen_awal = 1, jam_absen_awal = :jam, keterangan_awal = :keterangan WHERE kode_asisten = :kode");
+                $stmt->execute(['jam' => $jam_absen, 'keterangan' => $keterangan_awal, 'kode' => $kode_asisten]);
+
+                $alert_message = 'Anda telah berhasil melakukan presensi awal!';
+                // Hapus cache
+                header("Location: " . $_SERVER['PHP_SELF'] . "?alert=" . urlencode($alert_message));
+                exit();
+            } 
+            // Logika untuk absen akhir
+            elseif ($absen_akhir_enabled && $user['absen_akhir'] == 0) {
+                // Menyimpan absen akhir (tidak ada batas waktu)
+                $stmt = $pdo->prepare("UPDATE user SET absen_akhir = 1, jam_absen_akhir = :jam WHERE kode_asisten = :kode");
+                $stmt->execute(['jam' => $jam_absen, 'kode' => $kode_asisten]);
+
+                $alert_message = 'Anda telah berhasil melakukan presensi akhir!';
+                // Hapus cache
+                header("Location: " . $_SERVER['PHP_SELF'] . "?alert=" . urlencode($alert_message));
+                exit();
+            } else {
+                // Menentukan jenis presensi yang sudah dilakukan
+                $pesan = $user['absen_awal'] ? 'Anda sudah melakukan presensi awal!' : 'Anda sudah melakukan presensi akhir!';
+                $alert_message = $pesan;
+            }
         }
     }
 }
@@ -90,15 +93,12 @@ if ($cutoff['absen_awal_enabled']) {
     $jam_akhir = new DateTime($cutoff['absen_awal_end']);
     $jam_absen_dt = new DateTime($jam_sekarang);
 
-    if ($jam_absen_dt < $jam_mulai) {
-        $warna = 'text-green-500'; // Tepat waktu
-    } elseif ($jam_absen_dt >= $jam_mulai && $jam_absen_dt <= $jam_akhir) {
+    if ($jam_absen_dt <= $jam_akhir) {
         $warna = 'text-green-500'; // Tepat waktu
     } else {
         $warna = 'text-red-500'; // Lambat
     }
-} else if ($cutoff['absen_akhir_enabled']) {
-    // Tidak ada batas waktu untuk presensi akhir
+} elseif ($cutoff['absen_akhir_enabled']) {
     $warna = 'text-green-500'; // Anggap selalu tepat waktu untuk absen akhir
 }
 
@@ -113,9 +113,8 @@ if (isset($_GET['alert'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>presensi</title>
+    <title>Presensi</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tambahkan SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-gray-100 p-6">
@@ -127,24 +126,22 @@ if (isset($_GET['alert'])) {
         <form method="POST" class="space-y-4">
             <div>
                 <label class="block font-semibold">Kode Asisten</label>
-                <input type="text" name="kode_asisten" class="border rounded p-2 w-full" required>
+                <input type="text" name="kode_asisten" class="border rounded p-2 w-full <?php echo $presensi_dinaktifkan ? 'cursor-not-allowed' : ''; ?>" <?php echo $presensi_dinaktifkan ? 'disabled' : ''; ?> required>
             </div>
             <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Kirim presensi</button>
         </form>
     </div>
 
     <script>
-        // Menampilkan pesan kesalahan jika kode asisten tidak valid
         <?php if (!empty($error_message)): ?>
             Swal.fire({
                 icon: 'error',
-                title: 'Salah Input!',
+                title: 'Gagal!',
                 text: '<?php echo $error_message; ?>',
                 confirmButtonText: 'OK'
             });
         <?php endif; ?>
 
-        // Menampilkan pesan keberhasilan jika ada
         <?php if (!empty($alert_message)): ?>
             Swal.fire({
                 icon: 'success',
@@ -152,7 +149,6 @@ if (isset($_GET['alert'])) {
                 text: '<?php echo $alert_message; ?>',
                 confirmButtonText: 'OK'
             }).then(() => {
-                // Reset URL setelah alert ditutup
                 history.replaceState(null, '', 'index.php');
             });
         <?php endif; ?>
