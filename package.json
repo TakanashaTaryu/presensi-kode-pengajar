@@ -1,0 +1,22 @@
+{
+  "name": "ToT",
+  "version": "Beta 1.0",
+  "description": "presensi",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i src/css/input.css -o src/css/style.css",
+    "watch": "tailwindcss -i ./src/css/input.css -o ./src/css/style.css --watch"
+  },
+  "keywords": [],
+  "author": "takanasha_taryu",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10"
+  },
+  "dependencies": {
+    "sweetalert2": "^11.14.4",
+    "tw-elements": "^2.0.0"
+  }
+}

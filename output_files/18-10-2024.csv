@@ -1,0 +1,89 @@
+"kode_asisten","absen_awal","jam_absen_awal","keterangan_awal","absen_akhir","jam_absen_akhir","keterangan_akhir"
+"LEX","1","19:09:00","Lambat","1","20:05:00",NULL
+"ARC","1","19:09:00","Lambat","1","20:05:00",NULL
+"FLO","1","18:44:00","Lambat","1","20:37:00",NULL
+"DYS","1","18:44:00","Lambat","1","20:37:00",NULL
+"SNI","1","18:43:00","Lambat","1","20:38:00",NULL
+"AUL","1","18:43:00","Lambat","1","20:37:00",NULL
+"ONE","1","18:42:00","Lambat","1","20:38:00",NULL
+"UZY","1","18:42:00","Lambat","1","20:43:00",NULL
+"ZEN","1","18:42:00","Lambat","1","20:35:00",NULL
+"RAF","1","18:42:00","Lambat","1","20:38:00",NULL
+"FAV","1","18:42:00","Lambat","1","20:41:00",NULL
+"RYN","1","18:21:00","Lambat","1","20:44:00",NULL
+"RDJ","1","18:21:00","Lambat","1","20:41:00",NULL
+"DAN","1","16:46:00","Lambat","0",NULL,NULL
+"DHY","1","16:42:00","Tepat waktu","1","20:37:00",NULL
+"BIL","1","16:37:00","Tepat waktu","1","20:37:00",NULL
+"SHA","1","16:36:00","Tepat waktu","0",NULL,NULL
+"BAY","1","16:33:00","Tepat waktu","0",NULL,NULL
+"OIL","1","16:32:00","Tepat waktu","1","20:40:00",NULL
+"LLY","1","16:32:00","Tepat waktu","0",NULL,NULL
+"MAS","1","16:32:00","Tepat waktu","1","20:37:00",NULL
+"VAL","1","16:32:00","Tepat waktu","0",NULL,NULL
+"GUS","1","16:28:00","Tepat waktu","0",NULL,NULL
+"MHZ","1","16:28:00","Tepat waktu","0",NULL,NULL
+"RAP","1","16:28:00","Tepat waktu","1","20:38:00",NULL
+"THI","1","16:28:00","Tepat waktu","0",NULL,NULL
+"TIP","1","16:26:00","Tepat waktu","1","20:39:00",NULL
+"REL","1","16:26:00","Tepat waktu","1","20:37:00",NULL
+"NUE","1","16:25:00","Tepat waktu","1","20:44:00",NULL
+"MIT","1","16:25:00","Tepat waktu","1","20:47:00",NULL
+"DEY","1","16:25:00","Tepat waktu","1","20:39:00",NULL
+"WLN","1","16:25:00","Tepat waktu","1","20:42:00",NULL
+"ARZ","1","16:25:00","Tepat waktu","0",NULL,NULL
+"JIN","1","16:24:00","Tepat waktu","1","20:40:00",NULL
+"GND","1","16:23:00","Tepat waktu","1","20:39:00",NULL
+"ZIN","1","16:23:00","Tepat waktu","0",NULL,NULL
+"GAN","1","16:23:00","Tepat waktu","0",NULL,NULL
+"AKI","1","16:21:00","Tepat waktu","1","20:43:00",NULL
+"DUN","1","16:21:00","Tepat waktu","0",NULL,NULL
+"DAZ","1","16:20:00","Tepat waktu","1","20:37:00",NULL
+"AAA","1","16:19:00","Tepat waktu","0",NULL,NULL
+"RZE","1","16:19:00","Tepat waktu","1","20:38:00",NULL
+"ARG","1","16:18:00","Tepat waktu","1","20:38:00",NULL
+"SYW","1","16:15:00","Tepat waktu","1","20:43:00",NULL
+"ION","1","16:15:00","Tepat waktu","1","20:41:00",NULL
+"ALL","1","16:12:00","Tepat waktu","1","20:37:00",NULL
+"NST","1","16:12:00","Tepat waktu","1","20:05:00",NULL
+"FAZ","1","16:12:00","Tepat waktu","1","20:41:00",NULL
+"PER","1","16:12:00","Tepat waktu","1","20:37:00",NULL
+"DAR","1","16:10:00","Tepat waktu","1","20:39:00",NULL
+"FYN","1","16:09:00","Tepat waktu","1","20:38:00",NULL
+"TIN","1","16:04:00","Tepat waktu","1","20:42:00",NULL
+"TRA","1","16:04:00","Tepat waktu","1","20:43:00",NULL
+"ZAI","1","16:04:00","Tepat waktu","0",NULL,NULL
+"BUS","1","16:04:00","Tepat waktu","1","20:45:00",NULL
+"TGH","1","16:02:00","Tepat waktu","0",NULL,NULL
+"ACC","1","16:01:00","Tepat waktu","1","20:42:00",NULL
+"AKA","1","16:01:00","Tepat waktu","1","20:40:00",NULL
+"TAN","1","16:01:00","Tepat waktu","1","20:37:00",NULL
+"RYU","1","16:00:26","Tepat waktu","1","20:44:00",NULL
+"SOH","1","16:00:00","Tepat waktu","1","20:40:00",NULL
+"IAN","1","16:00:00","Tepat waktu","1","20:38:00",NULL
+"TNT","1","16:00:00","Tepat waktu","0",NULL,NULL
+"UKI","1","16:00:00","Tepat waktu","1","20:38:00",NULL
+"NAI","1","15:59:00","Tepat waktu","1","20:38:00",NULL
+"SSS","1","15:59:00","Tepat waktu","1","20:38:00",NULL
+"SAM","1","15:59:00","Tepat waktu","0",NULL,NULL
+"WGG","1","15:59:00","Tepat waktu","0",NULL,NULL
+"AKK","1","15:58:00","Tepat waktu","1","20:41:00",NULL
+"ALD","1","15:58:00","Tepat waktu","1","20:43:00",NULL
+"NFB","1","15:58:00","Tepat waktu","1","20:40:00",NULL
+"EKA","1","15:58:00","Tepat waktu","1","20:37:00",NULL
+"NOE","1","15:58:00","Tepat waktu","1","20:40:00",NULL
+"DNR","0",NULL,NULL,"0",NULL,NULL
+"CLA","0",NULL,NULL,"1","20:40:00",NULL
+"DPR","0",NULL,NULL,"0",NULL,NULL
+"RAR","0",NULL,NULL,"1","20:42:00",NULL
+"EZL","0",NULL,NULL,"1","20:39:00",NULL
+"RAD","0",NULL,NULL,"0",NULL,NULL
+"CYN","0",NULL,NULL,"0",NULL,NULL
+"CHZ","0",NULL,NULL,"1","20:43:00",NULL
+"RIZ","0",NULL,NULL,"0",NULL,NULL
+"VIS","0",NULL,NULL,"0",NULL,NULL
+"NTR","0",NULL,NULL,"0",NULL,NULL
+"BRI","0",NULL,NULL,"0",NULL,NULL
+"ALY","0",NULL,NULL,"0",NULL,NULL
+"JFT","0",NULL,NULL,"0",NULL,NULL
+"AMG","0",NULL,NULL,"0",NULL,NULL
