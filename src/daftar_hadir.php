@@ -67,6 +67,7 @@ $daftar_hadir = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         <div class="mb-4">
             <a href="export.php" class="bg-green-500 text-white py-2 px-4 rounded">Ekspor ke CSV</a>
+            <a href="input_perizinan.php" class="bg-blue-500 text-white py-2 px-4 rounded">Input Perizinan</a>
         </div>
 
         <div class="overflow-x-auto">
@@ -111,6 +112,7 @@ $daftar_hadir = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="mb-4 flex justify-between">
             <a href="admin.php" class="bg-gray-500 text-white py-2 px-4 rounded">Kembali Ke Admin</a>
             <a href="index.php" class="bg-gray-500 text-white py-2 px-4 rounded">Pergi Ke Input</a>
+            
         </div>
     </div>
 
