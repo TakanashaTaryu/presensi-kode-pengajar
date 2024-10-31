@@ -116,9 +116,13 @@ if (isset($_GET['alert'])) {
     <title>Presensi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/heroicons@1.0.6/outline/svg/gear.svg"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
 </head>
 <body class="bg-gray-100 p-6">
-    <div class="max-w-lg mx-auto bg-white p-8 shadow-lg">
+    <div class="max-w-lg mx-auto bg-white p-8 shadow-lg relative">
         <h1 class="text-2xl font-bold mb-4">Presensi <?php echo $cutoff['absen_awal_enabled'] ? "Awal" : "Akhir"; ?></h1>
         <div class="mb-4">
             <p class="font-semibold">Jam Sekarang: <span class="<?php echo $warna; ?>"><?php echo $jam_sekarang; ?></span></p>
@@ -130,7 +134,12 @@ if (isset($_GET['alert'])) {
             </div>
             <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Kirim presensi</button>
         </form>
+        <a href="admin.php" class="absolute top-0 right-0 mr-4 mt-4 text-gray-500 hover:text-gray-700">
+        <!-- Icon Gear Font Awesome -->
+        <i class="fas fa-cog text-xl"></i>
+    </a>
     </div>
+
 
     <script>
         <?php if (!empty($error_message)): ?>
