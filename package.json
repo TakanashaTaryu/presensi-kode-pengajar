@@ -4,8 +4,9 @@
   "description": "presensi",
   "main": "index.js",
   "scripts": {
-    "build": "tailwindcss -i src/css/input.css -o src/css/style.css",
-    "watch": "tailwindcss -i ./src/css/input.css -o ./src/css/style.css --watch"
+    "postbuild": "tailwindcss -i src/css/input.css -o src/css/style.css",
+    "watch": "tailwindcss -i ./src/css/input.css -o ./src/css/style.css --watch",
+    "postinstall": "tailwindcss -i src/css/input.css -o src/css/style.css"
   },
   "keywords": [],
   "author": "takanasha_taryu",
