@@ -40,6 +40,7 @@ function saveCutoffSettings($data) {
 function resetAssistantData($pdo) {
     // Hapus semua data asisten
     $pdo->exec("DELETE FROM user");
+    $pdo->exec("DELETE FROM perizinan");
 
     // Daftar kode asisten yang akan dimasukkan ulang
     $kode_asisten = [

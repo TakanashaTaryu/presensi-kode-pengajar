@@ -1,7 +1,7 @@
 {
-    "absen_awal_enabled": false,
+    "absen_awal_enabled": true,
     "absen_awal_start": "16:00",
-    "absen_awal_end": "16:40",
-    "absen_akhir_enabled": true,
+    "absen_awal_end": "17:00",
+    "absen_akhir_enabled": false,
     "absen_akhir": "23:00"
 }
